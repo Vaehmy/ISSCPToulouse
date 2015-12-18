@@ -1,0 +1,9 @@
+/**
+ Export to JSON plugin for PHPMyAdmin
+ @version 0.1
+ */
+
+/* Database 'DCToulouse' */ 
+/* DCToulouse.Vehicules */
+
+[{"idVehicle": 2,"currentLat": 43.604652,"currentLong": 1.444209,"postTime": "2015-12-17 17:39:26"}, {"idVehicle": 3,"currentLat": 43.603578,"currentLong": 1.445947,"postTime": "2015-12-17 17:39:26"}, {"idVehicle": 4,"currentLat": 43.594084,"currentLong": 1.44879,"postTime": "2015-12-17 17:41:23"}, {"idVehicle": 5,"currentLat": 43.592141,"currentLong": 1.44055,"postTime": "2015-12-17 17:42:01"}, {"idVehicle": 6,"currentLat": 43.597922,"currentLong": 1.445507,"postTime": "2015-12-17 17:42:46"}, {"idVehicle": 7,"currentLat": 43.600331,"currentLong": 1.450914,"postTime": "2015-12-17 17:42:46"}]
