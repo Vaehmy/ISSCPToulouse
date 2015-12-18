@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffe6ddce">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/imageView"
+        android:src="@drawable/background"
+        android:background="@drawable/background" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#00053e43">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Mes trajets"
+            android:id="@+id/textView"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
+            android:textColor="#ff5b5f60" />
+
+        <HorizontalScrollView
+            android:id="@+id/hsv"
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            android:fillViewport="false"
+            android:measureAllChildren="false"
+            android:scrollbars="none"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="#3ee6ddce">
+
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="#e4f6f7ff"
+                android:paddingLeft="20dp">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ib_addRoute"
+                    android:src="@drawable/add"
+                    android:cropToPadding="false"
+                    android:adjustViewBounds="false"
+                    android:background="#00ffffff"
+                    android:layout_marginLeft="15dp"
+                    android:layout_centerVertical="true" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ib_route1"
+                    android:src="@drawable/route"
+                    android:background="#00ffffff"
+                    android:layout_toRightOf="@+id/ib_addRoute"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ib_route2"
+                    android:src="@drawable/route"
+                    android:background="#00ffffff"
+                    android:layout_toRightOf="@+id/ib_route1"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ib_route3"
+                    android:src="@drawable/route"
+                    android:background="#00ffffff"
+                    android:layout_toRightOf="@+id/ib_route2"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Route1"
+                    android:id="@+id/tv_route1"
+                    android:layout_below="@+id/ib_route1"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_alignLeft="@+id/ib_route1" />
+
+                <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Route2"
+                android:id="@+id/tv_route2"
+                android:layout_below="@+id/ib_route2"
+                android:layout_marginTop="1dp"
+                android:layout_alignLeft="@+id/ib_route2"
+                    android:layout_marginLeft="5dp" />
+
+                <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Route3"
+                android:id="@+id/tv_route3"
+                android:layout_marginLeft="5dp"
+                android:layout_below="@+id/ib_route3"
+                android:layout_marginTop="1dp"
+                android:layout_alignLeft="@+id/ib_route3" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ib_route4"
+                    android:src="@drawable/route"
+                    android:background="#00ffffff"
+                    android:layout_toRightOf="@+id/ib_route3"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Route4"
+                    android:id="@+id/tv_route4"
+                    android:layout_below="@+id/ib_route4"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_alignLeft="@+id/ib_route4" />
+
+                <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ib_route5"
+                android:src="@drawable/route"
+                android:background="#00ffffff"
+                android:layout_toRightOf="@+id/ib_route4"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Route5"
+                    android:id="@+id/tv_route5"
+                    android:layout_below="@+id/ib_route5"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_alignLeft="@+id/ib_route5" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ib_route6"
+                    android:src="@drawable/route"
+                    android:background="#00ffffff"
+                    android:layout_toRightOf="@+id/ib_route5"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Route6"
+                    android:id="@+id/tv_route6"
+                    android:layout_below="@+id/ib_route6"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_alignLeft="@+id/ib_route6" />
+
+            </RelativeLayout>
+        </HorizontalScrollView>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/hsv"
+            android:background="#60ffffff"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="20dp">
+
+            <ScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/scrollView2"
+                android:background="#c3fbfffb"
+                android:padding="10dp">
+
+                <TableLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="#60ffffff">
+
+                    <EditText
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/et_routeName"
+                        android:text="RouteName"
+                        android:textSize="22dp"
+                        android:textColor="#ff55403e"
+                        android:textStyle="bold"
+                        android:autoText="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Depuis"
+                        android:id="@+id/tv_depuis"
+                        android:layout_gravity="left"
+                        android:textSize="20dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="#ff433837"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPostalAddress"
+                        android:ems="10"
+                        android:id="@+id/et_addDepuis"
+                        android:text="AdressePostaleDepuis" />
+
+                    <ExpandableListView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/elv_addDepuis"
+                        android:choiceMode="singleChoice" />
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="à"
+                            android:id="@+id/tv_heureDepart"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="5dp"
+                            android:textSize="18dp" />
+
+                        <TimePicker
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/timePicker"
+                            android:layout_column="3" />
+
+                    </TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Vers"
+                        android:id="@+id/tv_vers"
+                        android:layout_gravity="left"
+                        android:textSize="20dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="#ff433837"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPostalAddress"
+                        android:ems="10"
+                        android:id="@+id/et_addVers"
+                        android:text="AdressePostaleVers" />
+
+                    <ExpandableListView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/elv_AddVers"
+                        android:choiceMode="singleChoice" />
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Approx. à"
+                            android:id="@+id/tv_heureArrivee"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="5dp"
+                            android:textSize="18dp" />
+
+                        <TimePicker
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/timePicker_HeureArriee" />
+                    </TableRow>
+
+
+                </TableLayout>
+            </ScrollView>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

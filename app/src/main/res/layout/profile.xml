@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#e35151">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#ffffff"
+            android:padding="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="0dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Profil"
+                android:id="@+id/tv_profileTitle"
+                android:textColor="#e35151"
+                android:paddingLeft="50dp" />
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#00000000">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentTop="false"
+                android:background="#ffffff"
+                android:paddingTop="20dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="15dp"
+                android:layout_marginTop="2dp">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ib_profilePicture"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:src="@drawable/profile" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:text="@string/profileName"
+                    android:ems="10"
+                    android:id="@+id/tv_profileName"
+                    android:layout_alignTop="@+id/ib_profilePicture"
+                    android:layout_toRightOf="@+id/ib_profilePicture"
+                    android:layout_toEndOf="@+id/ib_profilePicture"
+                    android:layout_marginTop="32dp"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="6dp"
+                    android:textSize="20dp" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:text="@string/profileName"
+                    android:ems="10"
+                    android:id="@+id/et_profileName"
+                    android:layout_alignTop="@+id/ib_profilePicture"
+                    android:layout_toRightOf="@+id/ib_profilePicture"
+                    android:layout_toEndOf="@+id/ib_profilePicture"
+                    android:layout_marginTop="25dp"
+                    android:textSize="20dp" />
+
+                <ScrollView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/scrollView3"
+                    android:layout_below="@+id/ib_profilePicture"
+                    android:layout_alignLeft="@+id/ib_profilePicture"
+                    android:layout_alignStart="@+id/ib_profilePicture"
+                    android:background="#fffdfd"
+                    android:layout_above="@+id/b_editProfile"
+                    android:padding="10dp"
+                    android:fillViewport="false">
+
+
+                    <RelativeLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Adresse"
+                            android:id="@+id/tv_addTitle"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="0dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginTop="15dp"
+                            android:textSize="20dp"
+                            android:textColor="#e35151" />
+
+                        <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/profileStreet"
+                        android:id="@+id/tv_profileRue"
+                        android:layout_alignParentLeft="false"
+                        android:layout_alignParentTop="false"
+                        android:textColor="#000000"
+                        android:layout_below="@+id/tv_addTitle"
+                        android:layout_marginLeft="10dp"
+                            android:layout_margin="10dp"
+                            android:textSize="18dp" />
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/profileStreet"
+                            android:id="@+id/et_profileRue"
+                            android:layout_alignParentLeft="false"
+                            android:layout_alignParentTop="false"
+                            android:textColor="#000000"
+                            android:layout_below="@+id/tv_addTitle"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="18dp" />
+
+                        <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/profilePostal"
+                        android:id="@+id/tv_profilePostal"
+                        android:layout_alignParentLeft="false"
+                        android:layout_alignParentTop="false"
+                        android:textColor="#000000"
+                        android:layout_below="@+id/tv_profileRue"
+                        android:layout_marginLeft="10dp"
+                            android:layout_margin="10dp"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/profileCity"
+                            android:id="@+id/tv_profileCity"
+                            android:layout_alignParentLeft="false"
+                            android:layout_alignParentTop="false"
+                            android:textColor="#000000"
+                            android:layout_below="@+id/tv_profileRue"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/tv_profilePostal"
+                            android:layout_margin="10dp"
+                            android:textSize="18dp" />
+
+                        <EditText
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/profilePostal"
+                            android:id="@+id/et_profilePostal"
+                            android:layout_alignParentLeft="false"
+                            android:layout_alignParentTop="false"
+                            android:textColor="#000000"
+                            android:layout_below="@+id/et_profileRue"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="18dp" />
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/profileCity"
+                            android:id="@+id/et_profileCity"
+                            android:layout_alignParentLeft="false"
+                            android:layout_alignParentTop="false"
+                            android:textColor="#000000"
+                            android:layout_below="@+id/et_profileRue"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/et_profilePostal"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Email"
+                            android:id="@+id/tv_addMailtv"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="0dp"
+                            android:layout_alignParentTop="false"
+                            android:layout_marginTop="10dp"
+                            android:layout_below="@+id/tv_profilePostal"
+                            android:textSize="20dp"
+                            android:paddingTop="10dp"
+                            android:textColor="#e35151" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Email"
+                            android:id="@+id/tv_addMailet"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="0dp"
+                            android:layout_alignParentTop="false"
+                            android:layout_marginTop="10dp"
+                            android:layout_below="@+id/et_profilePostal"
+                            android:textSize="20dp"
+                            android:paddingTop="10dp"
+                            android:textColor="#e35151" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/profileMail"
+                            android:id="@+id/tv_profileMail"
+                            android:layout_alignParentLeft="false"
+                            android:layout_alignParentTop="false"
+                            android:textColor="#000000"
+                            android:layout_below="@+id/tv_addMailtv"
+                            android:layout_marginLeft="10dp"
+                            android:layout_margin="10dp"
+                            android:textSize="18dp" />
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/profileMail"
+                            android:id="@+id/et_profileMail"
+                            android:layout_alignParentLeft="false"
+                            android:layout_alignParentTop="false"
+                            android:textColor="#000000"
+                            android:layout_below="@+id/tv_addMailet"
+                            android:layout_marginLeft="10dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Téléphone"
+                            android:id="@+id/tv_addTeltv"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="0dp"
+                            android:layout_alignParentTop="false"
+                            android:layout_marginTop="10dp"
+                            android:layout_below="@+id/tv_profileMail"
+                            android:textSize="20dp"
+                            android:paddingTop="10dp"
+                            android:textColor="#e35151" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Téléphone"
+                            android:id="@+id/tv_addTelet"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="0dp"
+                            android:layout_alignParentTop="false"
+                            android:layout_marginTop="10dp"
+                            android:layout_below="@+id/et_profileMail"
+                            android:textSize="20dp"
+                            android:paddingTop="10dp"
+                            android:textColor="#e35151" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/profileTel"
+                            android:id="@+id/tv_profileTel"
+                            android:layout_alignParentLeft="false"
+                            android:layout_alignParentTop="false"
+                            android:textColor="#000000"
+                            android:layout_below="@+id/tv_addTeltv"
+                            android:layout_marginLeft="10dp"
+                            android:layout_margin="10dp"
+                            android:textSize="18dp" />
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/et_profileTel"
+                            android:text="@string/profileTel"
+                            android:layout_alignParentLeft="false"
+                            android:layout_alignParentTop="false"
+                            android:textColor="#000000"
+                            android:layout_below="@+id/tv_addTelet"
+                            android:layout_marginLeft="10dp" />
+
+                    </RelativeLayout>
+                </ScrollView>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Editer mon profil"
+                    android:id="@+id/b_editProfile"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/edit"
+                    android:background="#00ffffff" />
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

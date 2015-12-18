@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffe6ddce">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/iv_param"
+        android:src="@drawable/background"
+        android:background="@drawable/background" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Mes parametres"
+        android:id="@+id/tv_parametres"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="#ff251915"
+        android:backgroundTintMode="src_atop" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#00053e43"
+        android:layout_below="@+id/tv_parametres">
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#92ffffff"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="20dp"
+            android:layout_margin="20dp">
+
+            <ScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/scrollView2"
+                android:background="#3ca7a7a7"
+                android:padding="10dp"
+                android:fillViewport="true"
+                android:nestedScrollingEnabled="false">
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:padding="20dp">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Parametre1"
+                        android:id="@+id/tv_param1"
+                        android:textSize="20dp"
+                        android:paddingBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Parametre2"
+                        android:id="@+id/tv_param2"
+                        android:layout_below="@+id/switch1"
+                        android:textSize="20dp"
+                        android:paddingBottom="10dp"
+                        android:layout_marginBottom="20dp" />
+
+                    <Switch
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Switch"
+                        android:id="@+id/switch1"
+                        android:layout_toRightOf="@+id/tv_param1"
+                        android:layout_toEndOf="@+id/tv_param1"
+                        android:layout_alignTop="@+id/tv_param1"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginBottom="20dp" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Param4"
+                        android:id="@+id/rb_param4"
+                        android:layout_alignParentTop="false"
+                        android:layout_alignLeft="@+id/tv_param2"
+                        android:layout_alignStart="@+id/tv_param2"
+                        android:layout_below="@+id/tv_param2"
+                        android:checked="true"
+                        android:textSize="20dp" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Param5"
+                        android:id="@+id/rb_param5"
+                        android:layout_below="@+id/tv_param2"
+                        android:checked="false"
+                        android:textSize="20dp"
+                        android:layout_alignParentRight="true" />
+
+                    <ProgressBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/progressBar"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/tv_param2"
+                        android:layout_marginLeft="40dp"
+                        android:layout_alignParentRight="true" />
+
+                </RelativeLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar2"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="100dp" />
+
+</RelativeLayout>
