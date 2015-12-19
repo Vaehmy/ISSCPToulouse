@@ -1,9 +1,0 @@
-/**
- Export to JSON plugin for PHPMyAdmin
- @version 0.1
- */
-
-/* Database 'DCToulouse' */ 
-/* DCToulouse.Users */
-
-[{"id": 1,"name": "Marie DUPONT","addStreet": "27 Rue Jean Jaurès","addPostal": 31000,"addCity": "Toulouse","sexe": "F","telephone": 06062164978,"idVehicle": 2,"isDriver": "true"}, {"id": 3,"name": "Suzanne SUZ","addStreet": "87 Rue des Magiciens","addPostal": 31400,"addCity": "Toulouse","sexe": "F","telephone": 0561348250,"idVehicle": 4,"isDriver": "true"}, {"id": 4,"name": "Patrick PAT","addStreet": "Grand Rond","addPostal": 31000,"addCity": "Toulouse","sexe": "M","telephone": 0531313131,"idVehicle": 5,"isDriver": "true"}, {"id": 5,"name": "Marc MAR","addStreet": "1 Impasse des Cocotiers","addPostal": 31400,"addCity": "Toulouse","sexe": "M","telephone": "","idVehicle": 6,"isDriver": "true"}, {"id": 6,"name": "Pascal PAS","addStreet": "1 impasse Debussy","addPostal": 3400,"addCity": "Toulouse","sexe": "M","telephone": 0606063171,"idVehicle": 7,"isDriver": "true"}]
