@@ -92,7 +92,7 @@
         <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/switch2"
+            android:id="@+id/switchUD"
             android:checked="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
