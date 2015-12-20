@@ -3,8 +3,6 @@ package com.cap.projet5iss.handlers;
 import android.content.Context;
 import android.util.Log;
 
-import com.google.android.gms.maps.model.LatLng;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,7 +15,7 @@ import java.util.ArrayList;
 public class AllDriversHandler {
 
     JSONObject json ;
-    JSONArray jsonArray ;
+    JSONArray jAAllDrivers;
     VehiclesHandler vehiclesHandler ;
     Context context ;
 
@@ -30,10 +28,10 @@ public class AllDriversHandler {
     public ArrayList allDriversfromJSON(JSONObject json) {
 
         try {
-            jsonArray = this.json.getJSONArray("allDrivers");
+            jAAllDrivers = this.json.getJSONArray("allDrivers");
 
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
+            for (int i = 0; i < jAAllDrivers.length(); i++) {
+                JSONObject jsonObject = jAAllDrivers.getJSONObject(i);
                 String name = jsonObject.getString("name");
                 String vehicule = jsonObject.getString("idVehicle");
 
@@ -52,8 +50,8 @@ public class AllDriversHandler {
         return vehiclesHandler;
     }
 
-    public JSONArray getJsonArray(){
-        return jsonArray ;
+    public JSONArray getjAAllDrivers(){
+        return jAAllDrivers;
     }
 
     /*public LatLng getDriverLatLong(JSONObject jsonObject){
@@ -63,4 +61,17 @@ public class AllDriversHandler {
 
         return new LatLng(lat, lng);
     }*/
+
+    public JSONObject findDriverFromVehicleId(String idVehicle) throws JSONException {
+        Boolean found = false ;
+        int j = 0;
+        for (int i = 0; i < jAAllDrivers.length(); i++) {
+                if (jAAllDrivers.getJSONObject(i).getString("idVehicle").equals(idVehicle)){
+                    found = true ;
+                    j = i ;
+                    break;
+                }
+        }
+        return jAAllDrivers.getJSONObject(j);
+    }
 }
