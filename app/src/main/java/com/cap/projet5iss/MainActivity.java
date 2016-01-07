@@ -20,6 +20,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -167,5 +176,52 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         allVehiHandler = jHAllDrivers.getAllDriversHandler().getVehiclesHandler();
     }
 
+
+    protected void doInBackground(String... params) {
+        String urlString=params[0];
+        String resultToDisplay;
+        InputStream in = null;
+
+        // HTTP Get
+        try {
+            URL url = new URL(urlString);
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            in = new BufferedInputStream(urlConnection.getInputStream());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            File file = new File(getCacheDir(), "cacheFileAppeal.srl");
+            OutputStream output = null;
+            try {
+                output = new FileOutputStream(file);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            try {
+                try {
+                    byte[] buffer = new byte[4 * 1024]; // or other buffer size
+                    int read;
+
+                    while ((read = in.read(buffer)) != -1) {
+                        output.write(buffer, 0, read);
+                    }
+                    output.flush();
+                } finally {
+                    output.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace(); // handle exception, define IOException and others
+            }
+        } finally {
+            try {
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
 
 }
