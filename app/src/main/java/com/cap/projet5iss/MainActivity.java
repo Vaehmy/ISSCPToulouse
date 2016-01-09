@@ -11,6 +11,9 @@ import android.os.Environment;
 import android.support.v4.app.FragmentActivity; 
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -63,6 +66,15 @@ import static android.os.Environment.*;
 
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback{
 
+    ListView lv;
+    SearchView sv;
+    String[] adress={"15 Avenue du Colonel Roche 31400 Toulouse","135 Avenue de Rangueil, 31400 Toulouse",
+            "Airbus - Site Louis Bréguet 316 Route de Bayonne",
+            "Airbus France - Usine Saint-Martin 316 Route de Bayonne",
+            "MQ3, 1 Rond-Point Maurice Bellonte, 31700 Blagnac, France",
+            "31 Rue des Cosmonautes, Z.I. du Palays, 31400 Toulouse"};
+    ArrayAdapter<String> adapter;
+
     UserLocalStore userLocalStore;
     private GoogleMap mMap;
     private Switch switchUD ;
@@ -101,7 +113,22 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             file.mkdirs();
         }
         userLocalStore= new UserLocalStore(this);
+        lv=(ListView) findViewById(R.id.listView);
+        sv=(SearchView) findViewById(R.id.searchView);
+        adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,adress);
+        lv.setAdapter(adapter);
+        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String text) {
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String text) {
+                adapter.getFilter().filter(text);
+                return false;
+            }
+        });
     }
 
     /**
