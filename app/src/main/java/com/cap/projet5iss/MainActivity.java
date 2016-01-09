@@ -45,14 +45,6 @@ import java.util.ArrayList;
 
 import static android.os.Environment.getExternalStorageDirectory;
 
-/**
- * NOTES
- * Toute la partie Parser et Calculs de localisation, il faudrait
- * le faire en "AsynTask" de façon à ne pas bloquer l'application si
- * les algorithmes commencent à prendre trop de temps. Pour l'instant c'est instantanné,
- * mais dans le cas d'une grande BD on risquerait d'avoir quelques soucis côté performances.
- */
-
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
 
     ListView lv;
@@ -229,6 +221,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         new HttpAsyncGETTask().execute("http://hmkcode.appspot.com/rest/controller/get.json");
     }
 
+
     /**
      * To check is the smartphone is connected to the network
      *
@@ -242,6 +235,10 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         else
             return false;
     }
+
+
+
+    //*************************************************************************************
 
 
     /***********************************************
@@ -324,10 +321,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
      *               JSON POST
      **********************************************/
 
-    /**
-     * We call the POST method in an AsyncTask ( = a separate thread )
-     * so that the application will not freeze while posting the JSON files
-     */
+   
     private class HttpAsyncPOSTTask extends AsyncTask<String, Void, String> {
 
         @Override
@@ -372,28 +366,34 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     //*************************************************************************************
 
 
+    //  INDICATION ON HOW TO USE GET AND POST REST REQUEST
+
+
+
     /**
      *
      * Example steps to get all the drivers' json file from the network :
      *
      * 1. Set a correct name for the file where we will store the json data
+     * 2. Call the AsynTask to perform the operation on separate thread with the correct REST url
+     *
      *      jsonFileName = "theFileNameINeed.json" ;
-     * 2. Create a new RESTPostHandler like this
-     *      RESTGetHandler restgethandler = new RESTGetHandler( jsonFileName );
-     * 3. Call AsynTask to perform network operation on separate thread with the correct REST url
-     *      restgethandler.HttpAsynGETTask().execute( REST_GET_URL );
+     *      new HttpAsyncGETTask().execute( "myREST_GET_URL" );
+     *
     */
+
 
     /**
      *
      * Example steps for a POST request :
      *
-     * 1 Convert the JSON Object to post into a String
-     * 2 Save this string in dataToPost
-     *      dataToPost = myJSONString ;
-     * 3. Call the asynTask
-     *     restposthandler.HttpAsynPOSTTask().execute( REST_POST_URL );
+     * 1. Form the correct string according to the json you need to post
+     * 2. Save this string in dataToPost
+     * 3. Call the asyncTask with the correct POST url
      *
+     *     dataToPost = "myJSONString" ;
+     *     new HttpAsynPOSTTask().execute( "myREST_POST_URL" );
      */
+
 
    }
