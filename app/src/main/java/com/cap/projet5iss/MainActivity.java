@@ -1,29 +1,25 @@
 package com.cap.projet5iss;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v4.app.FragmentActivity; 
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Switch;
-import android.widget.Toast;
 
-import com.cap.projet5iss.handlers.*;
 import com.cap.projet5iss.handlers.JSONHandler;
+import com.cap.projet5iss.handlers.VehiclesHandler;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -36,25 +32,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Random;
 
-import static android.os.Environment.*;
+import static android.os.Environment.getExternalStorageDirectory;
 
 /**
  * NOTES
@@ -64,11 +53,11 @@ import static android.os.Environment.*;
  * mais dans le cas d'une grande BD on risquerait d'avoir quelques soucis côté performances.
  */
 
-public class MainActivity extends FragmentActivity implements OnMapReadyCallback{
+public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
 
     ListView lv;
     SearchView sv;
-    String[] adress={"15 Avenue du Colonel Roche 31400 Toulouse","135 Avenue de Rangueil, 31400 Toulouse",
+    String[] adress = {"15 Avenue du Colonel Roche 31400 Toulouse", "135 Avenue de Rangueil, 31400 Toulouse",
             "Airbus - Site Louis Bréguet 316 Route de Bayonne",
             "Airbus France - Usine Saint-Martin 316 Route de Bayonne",
             "MQ3, 1 Rond-Point Maurice Bellonte, 31700 Blagnac, France",
@@ -77,19 +66,20 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
     UserLocalStore userLocalStore;
     private GoogleMap mMap;
-    private Switch switchUD ;
-    private JSONHandler jHAllDrivers ;
-    private ArrayList aLAllDrivers ; // Array with all the Driver's JSONObjects
-    private VehiclesHandler allVehiHandler ;
+    private Switch switchUD;
+    private JSONHandler jHAllDrivers;
+    private ArrayList aLAllDrivers; // Array with all the Driver's JSONObjects
+    private VehiclesHandler allVehiHandler;
     String jsonFileName;
-    File jsonFile;
+    String dataToPost ;
 
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
     }
 
     /**
      * Called when the application is launched
+     *
      * @param savedInstanceState
      */
     @Override
@@ -112,10 +102,10 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         if (!file.exists()) {
             file.mkdirs();
         }
-        userLocalStore= new UserLocalStore(this);
-        lv=(ListView) findViewById(R.id.listView);
-        sv=(SearchView) findViewById(R.id.searchView);
-        adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,adress);
+        userLocalStore = new UserLocalStore(this);
+        lv = (ListView) findViewById(R.id.listView);
+        sv = (SearchView) findViewById(R.id.searchView);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, adress);
         lv.setAdapter(adapter);
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -134,13 +124,13 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     /**
      * Initialize the views and the handlers
      */
-    public void initialize(){
+    public void initialize() {
 
         // Views
         switchUD = (Switch) findViewById(R.id.switchUD);
 
         // JSON Handlers
-        jHAllDrivers = new JSONHandler(getApplicationContext(),"allDrivers.JSON");
+        jHAllDrivers = new JSONHandler(getApplicationContext(), "allDrivers.JSON");
     }
 
     /**
@@ -149,7 +139,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
      * - Add a listener for the Profile Button
      * - Add a listener for the Edit Routes Buttons
      */
-    public void setListeners(){
+    public void setListeners() {
         switchUD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,6 +157,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     /**
      * Called once the Google Map is ready
      * Before the map is ready, "mMAp" is null and cannot be used
+     *
      * @param googleMap The google map
      */
     @Override
@@ -179,7 +170,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    public void loadDriverMode(){
+    public void loadDriverMode() {
         //TODO
     }
 
@@ -188,7 +179,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
      * - check the current location of all drivers
      * - adds the markers on the map
      */
-    public void loadPassengerMode(){
+    public void loadPassengerMode() {
 
         JSONArray jAallVehicules;
 
@@ -201,7 +192,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
             // Browse the JSONArray of Vehicles and add a marker for each one of them
             for (int i = 0; i < jAallVehicules.length(); i++) {
-                LatLng location ;
+                LatLng location;
 
                 // Retrieving the location for a given vehicle
                 location = allVehiHandler.getLatLongFromObj(jAallVehicules.getJSONObject(i));
@@ -209,7 +200,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                 JSONObject driverObj;
                 driverObj = jHAllDrivers.getAllDriversHandler()
                         .findDriverFromVehicleId(String.valueOf(jAallVehicules
-                                        .getJSONObject(i).getInt("idVehicle")));
+                                .getJSONObject(i).getInt("idVehicle")));
 
                 // Adding a marker corresponding to this location
                 mMap.addMarker(new MarkerOptions()
@@ -233,15 +224,23 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         // Parsing all vehicles
         allVehiHandler = jHAllDrivers.getAllDriversHandler().getVehiclesHandler();
 
-        /**
-         * Exemple steps to get all the drivers' json file from the network :
-         * 1. Set a correct name for the file where we will store the json data
-         * 2. Call AsynTask to perform network operation on separate thread
-         *    with the correct REST url
-         */
 
         jsonFileName = "allDrivers.json";
-        new HttpAsyncTask().execute("http://hmkcode.appspot.com/rest/controller/get.json");
+        new HttpAsyncGETTask().execute("http://hmkcode.appspot.com/rest/controller/get.json");
+    }
+
+    /**
+     * To check is the smartphone is connected to the network
+     *
+     * @return
+     */
+    public boolean isConnected() {
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Activity.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected())
+            return true;
+        else
+            return false;
     }
 
 
@@ -253,10 +252,10 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         InputStream inputStream = null;
         String result = "";
 
-            // create HttpClient
-            HttpClient httpclient = new DefaultHttpClient();
+        // create HttpClient
+        HttpClient httpclient = new DefaultHttpClient();
 
-            // make GET request to the given URL
+        // make GET request to the given URL
         HttpResponse httpResponse = null;
         try {
             httpResponse = httpclient.execute(new HttpGet(url));
@@ -301,24 +300,12 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    /**
-     * To check is the smartphone is connected to the network
-     * @return
-     */
-    public boolean isConnected(){
-        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Activity.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected())
-            return true;
-        else
-            return false;
-    }
 
     /**
      * We call the GET method in an AsyncTask ( = a separate thread )
      * so that the application will not freeze while getting the JSON files
      */
-    private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+    private class HttpAsyncGETTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... urls) {
@@ -333,4 +320,80 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-}
+    /***********************************************
+     *               JSON POST
+     **********************************************/
+
+    /**
+     * We call the POST method in an AsyncTask ( = a separate thread )
+     * so that the application will not freeze while posting the JSON files
+     */
+    private class HttpAsyncPOSTTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+
+            return POST(urls[0]);
+        }
+
+        // onPostExecute displays the results of the AsyncTask.
+        @Override
+        protected void onPostExecute(String result) {
+            Log.i("JSON POST REQUEST", "Data Sent");
+        }
+    }
+
+
+    public String POST(String urlToPost) {
+
+        BufferedReader reader = null;
+
+        // Send data
+
+        // Defined URL  where to send data
+        URL url = null;
+        try {
+            url = new URL(urlToPost);
+
+            URLConnection conn = url.openConnection();
+            conn.setDoOutput(true);
+            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+            wr.write(dataToPost);
+            wr.flush();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "POST";
+    }
+
+
+
+    //*************************************************************************************
+
+
+    /**
+     *
+     * Example steps to get all the drivers' json file from the network :
+     *
+     * 1. Set a correct name for the file where we will store the json data
+     *      jsonFileName = "theFileNameINeed.json" ;
+     * 2. Create a new RESTPostHandler like this
+     *      RESTGetHandler restgethandler = new RESTGetHandler( jsonFileName );
+     * 3. Call AsynTask to perform network operation on separate thread with the correct REST url
+     *      restgethandler.HttpAsynGETTask().execute( REST_GET_URL );
+    */
+
+    /**
+     *
+     * Example steps for a POST request :
+     *
+     * 1 Convert the JSON Object to post into a String
+     * 2 Save this string in dataToPost
+     *      dataToPost = myJSONString ;
+     * 3. Call the asynTask
+     *     restposthandler.HttpAsynPOSTTask().execute( REST_POST_URL );
+     *
+     */
+
+   }
