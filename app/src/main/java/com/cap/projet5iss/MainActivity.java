@@ -47,14 +47,14 @@ import static android.os.Environment.getExternalStorageDirectory;
 
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    ListView lv;
+  /*  ListView lv;
     SearchView sv;
     String[] adress = {"15 Avenue du Colonel Roche 31400 Toulouse", "135 Avenue de Rangueil, 31400 Toulouse",
             "Airbus - Site Louis Bréguet 316 Route de Bayonne",
             "Airbus France - Usine Saint-Martin 316 Route de Bayonne",
             "MQ3, 1 Rond-Point Maurice Bellonte, 31700 Blagnac, France",
             "31 Rue des Cosmonautes, Z.I. du Palays, 31400 Toulouse"};
-    ArrayAdapter<String> adapter;
+    ArrayAdapter<String> adapter;*/
 
     UserLocalStore userLocalStore;
     private GoogleMap mMap;
@@ -95,7 +95,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             file.mkdirs();
         }
         userLocalStore = new UserLocalStore(this);
-        lv = (ListView) findViewById(R.id.listView);
+       /* lv = (ListView) findViewById(R.id.listView);
         sv = (SearchView) findViewById(R.id.searchView);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, adress);
         lv.setAdapter(adapter);
@@ -110,7 +110,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                 adapter.getFilter().filter(text);
                 return false;
             }
-        });
+        });*/
     }
 
     /**
@@ -208,8 +208,13 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
     }
+    public void loadAllRoutes() {
+        JSONArray jDepartArriveRoutes;
+    }
 
-    public void readAllDrivers() throws JSONException {
+
+
+        public void readAllDrivers() throws JSONException {
 
         // Parsing all drivers
         aLAllDrivers = jHAllDrivers.jsonFile2ArrayList(getApplicationContext(), "allDrivers.json");
