@@ -321,7 +321,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
      *               JSON POST
      **********************************************/
 
-   
+
     private class HttpAsyncPOSTTask extends AsyncTask<String, Void, String> {
 
         @Override
