@@ -1,0 +1,9 @@
+/**
+ Export to JSON plugin for PHPMyAdmin
+ @version 0.1
+ */
+
+/* Database 'DCToulouse' */ 
+/* DCToulouse.Routes */
+
+[{"id": 1,"idUser": 1,"departHour": "10h","departLat": 43.5673,"departLong": 1.47541,"departPlace": "15 Avenue du Colonel Roche 31400 Toulous","arriveHour": "10h30","arriveLat": 43.6142,"arriveLong": 1.37689,"arrivePlace": "Airbus France - Usine Saint-Martin, Site","availableSeats": 3,"days": "Lundi, Mardi et Mercredi "}]

@@ -1,0 +1,9 @@
+/**
+ Export to JSON plugin for PHPMyAdmin
+ @version 0.1
+ */
+
+/* Database 'DCToulouse' */ 
+/* DCToulouse.Routes */
+
+[{"departPlace": "15 Avenue du Colonel Roche 31400 Toulous","arrivePlace": "Airbus France - Usine Saint-Martin, Site"}]
