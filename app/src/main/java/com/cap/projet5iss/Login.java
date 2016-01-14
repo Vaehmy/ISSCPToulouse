@@ -19,12 +19,12 @@ public class Login extends Activity implements View.OnClickListener{
     ImageButton bLoginNext;
     EditText etUsername, etPhone, etChipNum;
     RadioButton rbH, rbF  ;
-    TextView tvRegisterLink;
     Boolean isMale ;
     UserLocalStore userLocalStore;
     String name ;
     String phone ;
     String chipid ;
+    Boolean isLoggedIn ;
 
 
     @Override
@@ -56,18 +56,13 @@ public class Login extends Activity implements View.OnClickListener{
                 this.phone = etPhone.getText().toString();
                 this.chipid = etChipNum.getText().toString();
 
-                Intent intent = new Intent(this, Login2.class);
+                Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
 
-                // Je commente car pour le moment ça fait planter l'appli
+               // TODO
                 /*
-                User user=new User(null, null);
-                UserLocalStore.StoreUserData(user);
-                UserLocalStore.setUserLoggedIn(true);*/
-
-            /*case tvRegisterLink:
-                startActivity(new Intent(this, Register.class));
-                break;*/
+                create local file with all usefull information
+                 */
         }
     }
 
@@ -79,7 +74,15 @@ public class Login extends Activity implements View.OnClickListener{
         initialize();
         userLocalStore= new UserLocalStore(this);
         bLoginNext.setOnClickListener(this);
-        /*tvRegisterLink.setOnClickListener(this);*/
+
+        // TODO
+        /*
+        check local file
+        if exists
+        then say hello username then launch mainactivity
+        else
+        show log in screen
+         */
     }
 
     /**
@@ -92,7 +95,6 @@ public class Login extends Activity implements View.OnClickListener{
         rbF = (RadioButton) findViewById(R.id.rb_femme);
         rbH = (RadioButton) findViewById(R.id.rb_homme);
         bLoginNext = (ImageButton) findViewById(R.id.ib_next);
-        /*tvRegisterLink= (TextView) findViewById(R.id. tvRegisterLink);*/
         isMale = true;
 
     }

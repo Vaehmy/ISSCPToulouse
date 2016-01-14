@@ -1,6 +1,7 @@
 package com.cap.projet5iss;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -9,9 +10,7 @@ import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.SearchView;
+import android.widget.ImageButton;
 import android.widget.Switch;
 
 import com.cap.projet5iss.handlers.JSONHandler;
@@ -47,23 +46,19 @@ import static android.os.Environment.getExternalStorageDirectory;
 
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
 
-  /*  ListView lv;
-    SearchView sv;
-    String[] adress = {"15 Avenue du Colonel Roche 31400 Toulouse", "135 Avenue de Rangueil, 31400 Toulouse",
-            "Airbus - Site Louis Bréguet 316 Route de Bayonne",
-            "Airbus France - Usine Saint-Martin 316 Route de Bayonne",
-            "MQ3, 1 Rond-Point Maurice Bellonte, 31700 Blagnac, France",
-            "31 Rue des Cosmonautes, Z.I. du Palays, 31400 Toulouse"};
-    ArrayAdapter<String> adapter;*/
+
 
     UserLocalStore userLocalStore;
     private GoogleMap mMap;
     private Switch switchUD;
+    private ImageButton bRoutes;
     private JSONHandler jHAllDrivers;
     private ArrayList aLAllDrivers; // Array with all the Driver's JSONObjects
     private VehiclesHandler allVehiHandler;
     String jsonFileName;
     String dataToPost ;
+    private String serverLocation = "http://10.32.1.8:8080/SmartCitiesProject/rest/UserService/";
+
 
     protected void onStart() {
         super.onStart();
@@ -111,6 +106,24 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                 return false;
             }
         });*/
+
+        JSONObject obj=new JSONObject();
+
+        try {
+            obj.put("name", "Test JSON");
+            obj.put("addStreet", "FakeStreet for JSON Test");
+            obj.put("idVehicule", 10);
+            obj.put("isDriver", true);
+            obj.put("name", "Test JSON");
+            obj.put("sexe", "M");
+            obj.put("telephone", 0610120304);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        dataToPost = obj.toString() ;
+        new HttpAsyncPOSTTask().execute(serverLocation+"/post/users");
+
     }
 
     /**
@@ -120,6 +133,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Views
         switchUD = (Switch) findViewById(R.id.switchUD);
+        bRoutes = (ImageButton) findViewById(R.id.ib_route);
 
         // JSON Handlers
         jHAllDrivers = new JSONHandler(getApplicationContext(), "allDrivers.JSON");
@@ -129,7 +143,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
      * Set all the listeners
      * TODO
      * - Add a listener for the Profile Button
-     * - Add a listener for the Edit Routes Buttons
      */
     public void setListeners() {
         switchUD.setOnClickListener(new View.OnClickListener() {
@@ -144,8 +157,19 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         });
+
+        bRoutes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startNewActivity(Routes.class);
+            }
+        });
     }
 
+    public void startNewActivity(Class activityToStart){
+        Intent intent = new Intent(this, activityToStart);
+        startActivity(intent);
+    }
     /**
      * Called once the Google Map is ready
      * Before the map is ready, "mMAp" is null and cannot be used
@@ -163,7 +187,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void loadDriverMode() {
-        //TODO
+        bRoutes.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -171,8 +195,10 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
      * - check the current location of all drivers
      * - adds the markers on the map
      */
+
     public void loadPassengerMode() {
 
+        bRoutes.setVisibility(View.GONE);
         JSONArray jAallVehicules;
 
         try {
@@ -222,8 +248,33 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         allVehiHandler = jHAllDrivers.getAllDriversHandler().getVehiclesHandler();
 
 
-        jsonFileName = "allDrivers.json";
-        new HttpAsyncGETTask().execute("http://hmkcode.appspot.com/rest/controller/get.json");
+            jsonFileName = "allDrivers.json";
+            Log.i("MainActivity", "Going to GET all drivers ... ");
+            new HttpAsyncGETTask().execute(serverLocation + "drivers");
+
+            //  Log.i("MainActivity", "Going to GET all users ... ");
+            //  jsonFileName = "allUsers.json";
+            //   new HttpAsyncGETTask().execute(serverLocation+"users");
+
+            //  Log.i("MainActivity", "Going to GET user 1 ... ");
+            // jsonFileName = "user1.json";
+            //  new HttpAsyncGETTask().execute(serverLocation+"users/1");
+
+            //   jsonFileName = "allPassengers.json";
+            //   Log.i("MainActivity", "Going to GET all passengers ... ");
+            //   new HttpAsyncGETTask().execute(serverLocation+"passengers");
+
+            //    jsonFileName = "allVehicles.json";
+            //   Log.i("MainActivity", "Going to GET all cars ... ");
+            //   new HttpAsyncGETTask().execute(serverLocation+"cars");
+
+            //    jsonFileName = "allRoutes.json";
+            //    Log.i("MainActivity", "Going to GET all routes ... ");
+            //    new HttpAsyncGETTask().execute(serverLocation + "routes");
+
+
+
+
     }
 
 
@@ -262,6 +313,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         try {
             httpResponse = httpclient.execute(new HttpGet(url));
             // receive response as inputStream
+
             inputStream = httpResponse.getEntity().getContent();
             if(inputStream != null){
                 // Store inputstream in local file
@@ -274,6 +326,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Log.i("MAINACTIVITY", "Got following JSON : " + result);
         return result;
     }
 
@@ -311,7 +364,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
         @Override
         protected String doInBackground(String... urls) {
-
             return GET(urls[0]);
         }
 

@@ -5,7 +5,7 @@
     android:longClickable="false"
     android:tileMode="disabled"
     android:gravity="top"
-    android:background="@drawable/background">
+    android:background="#9aca61">
 
     <RelativeLayout
         android:orientation="vertical"
@@ -13,15 +13,15 @@
         android:layout_height="fill_parent">
 
         <ImageView
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:id="@+id/iv_logo"
-            android:layout_gravity="top|center_horizontal"
-            android:paddingTop="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2"
+            android:src="@drawable/jumpinbiglogo"
+            android:layout_alignParentBottom="false"
             android:layout_alignParentLeft="false"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/rb_femme"
-            android:layout_toStartOf="@+id/rb_femme" />
+            android:layout_alignParentStart="false"
+            android:foregroundGravity="center_horizontal"
+            android:layout_marginTop="-70dp" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -29,7 +29,7 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/et_name"
-            android:gravity="center_vertical|center_horizontal"
+            android:gravity="center_horizontal"
             android:layout_alignParentLeft="false"
             android:layout_marginLeft="40dp"
             android:layout_alignParentTop="false"
@@ -38,9 +38,13 @@
             android:layout_centerHorizontal="true"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:background="#d3dcdcdc"
+            android:background="#c8ffffff"
             android:layout_marginRight="40dp"
-            android:layout_below="@+id/iv_logo" />
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="false"
+            android:layout_alignTop="@+id/imageView2"
+            android:layout_marginTop="200dp"
+            android:text="Pseudo" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -51,17 +55,18 @@
             android:gravity="center_horizontal"
             android:layout_alignParentLeft="false"
             android:layout_alignParentTop="false"
-            android:layout_below="@+id/textView3"
             android:phoneNumber="true"
             android:typeface="serif"
             android:layout_marginBottom="10dp"
-            android:background="#d3dcdcdc"
+            android:background="#c8ffffff"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_alignParentEnd="false"
-            android:autoText="false" />
+            android:autoText="false"
+            android:text="Tel."
+            android:layout_below="@+id/et_name" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -72,21 +77,82 @@
             android:gravity="center_horizontal"
             android:layout_alignParentLeft="false"
             android:layout_alignParentTop="false"
-            android:layout_below="@+id/textView4"
             android:singleLine="false"
             android:typeface="serif"
             android:layout_marginBottom="40dp"
-            android:background="#d3dcdcdc"
+            android:background="#c8ffffff"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:layout_marginRight="40dp"
-            android:layout_marginLeft="40dp" />
+            android:layout_marginLeft="40dp"
+            android:layout_below="@+id/et_phone"
+            android:text="Quel est le # de votre puce ?" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/et_addStreet"
+            android:layout_alignParentLeft="false"
+            android:layout_marginLeft="40dp"
+            android:layout_alignParentTop="false"
+            android:typeface="serif"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="50dp"
+            android:paddingBottom="10dp"
+            android:background="#c8ffffff"
+            android:layout_marginRight="40dp"
+            android:paddingTop="10dp"
+            android:text="Entrez votre rue"
+            android:layout_below="@+id/et_phone"
+            android:gravity="center_horizontal" />
+
+        <EditText
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/et_addPostalCode"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentTop="false"
+            android:phoneNumber="true"
+            android:typeface="serif"
+            android:layout_marginBottom="21dp"
+            android:background="#c8ffffff"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:autoText="false"
+            android:layout_alignLeft="@+id/et_addStreet"
+            android:text="31xxx"
+            android:gravity="center_horizontal"
+            android:layout_above="@+id/rb_homme" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/et_addCity"
+            android:gravity="center_horizontal"
+            android:singleLine="false"
+            android:typeface="serif"
+            android:background="#c8ffffff"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:layout_below="@+id/et_addStreet"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/et_addPostalCode"
+            android:layout_marginRight="40dp"
+            android:text="Toulouse"
+            android:layout_marginBottom="20dp" />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/ib_next"
-            android:layout_below="@+id/et_serialnumber"
+            android:layout_below="@+id/rb_homme"
             android:layout_centerHorizontal="true"
             android:src="@drawable/go"
             android:layout_marginRight="40dp"
@@ -100,11 +166,11 @@
             android:layout_height="wrap_content"
             android:text="Homme"
             android:id="@+id/rb_homme"
-            android:layout_above="@+id/ib_next"
             android:layout_alignLeft="@+id/et_serialnumber"
             android:layout_alignStart="@+id/et_serialnumber"
             android:checked="true"
-            android:layout_marginLeft="40dp" />
+            android:layout_marginLeft="40dp"
+            android:layout_below="@+id/et_addCity" />
 
         <RadioButton
             android:layout_width="wrap_content"
@@ -112,37 +178,10 @@
             android:text="Femme"
             android:id="@+id/rb_femme"
             android:checked="false"
-            android:layout_above="@+id/ib_next"
             android:layout_alignRight="@+id/et_serialnumber"
             android:layout_alignEnd="@+id/et_serialnumber"
-            android:layout_marginRight="40dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Votre Pseudo"
-            android:id="@+id/textView2"
-            android:layout_centerVertical="true"
-            android:layout_alignLeft="@+id/et_name"
-            android:layout_above="@+id/et_name" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Votre numéro de téléhone"
-            android:id="@+id/textView3"
-            android:layout_below="@+id/et_name"
-            android:layout_alignLeft="@+id/et_phone"
-            android:layout_alignStart="@+id/et_phone" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Numéro de série de votre puce"
-            android:id="@+id/textView4"
-            android:layout_below="@+id/et_phone"
-            android:layout_alignLeft="@+id/et_serialnumber"
-            android:layout_alignStart="@+id/et_serialnumber" />
+            android:layout_marginRight="40dp"
+            android:layout_below="@+id/et_addCity" />
 
     </RelativeLayout>
 </RelativeLayout>
