@@ -89,7 +89,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         if (!file.exists()) {
             file.mkdirs();
         }
-        userLocalStore = new UserLocalStore(this);
+
        /* lv = (ListView) findViewById(R.id.listView);
         sv = (SearchView) findViewById(R.id.searchView);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, adress);
