@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.cap.projet5iss.handlers.JSONHandler;
 import com.cap.projet5iss.handlers.VehiclesHandler;
@@ -33,9 +34,12 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.URL;
@@ -47,8 +51,6 @@ import static android.os.Environment.getExternalStorageDirectory;
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
 
 
-
-    UserLocalStore userLocalStore;
     private GoogleMap mMap;
     private Switch switchUD;
     private ImageButton bRoutes;
@@ -57,6 +59,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     private VehiclesHandler allVehiHandler;
     String jsonFileName;
     String dataToPost ;
+    private TextView tv_welcome ;
     private String serverLocation = "http://10.32.1.8:8080/SmartCitiesProject/rest/UserService/";
 
 
@@ -134,6 +137,9 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         // Views
         switchUD = (Switch) findViewById(R.id.switchUD);
         bRoutes = (ImageButton) findViewById(R.id.ib_route);
+        tv_welcome = (TextView) findViewById(R.id.tV_welcomeName);
+
+
 
         // JSON Handlers
         jHAllDrivers = new JSONHandler(getApplicationContext(), "allDrivers.JSON");
@@ -234,6 +240,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
     }
+
     public void loadAllRoutes() {
         JSONArray jDepartArriveRoutes;
     }
