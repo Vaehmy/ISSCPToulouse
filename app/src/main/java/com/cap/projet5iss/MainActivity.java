@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cap.projet5iss.handlers.JSONHandler;
 import com.cap.projet5iss.handlers.VehiclesHandler;
@@ -22,6 +23,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.apache.http.HttpResponse;
@@ -34,12 +36,9 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.URL;
@@ -48,7 +47,7 @@ import java.util.ArrayList;
 
 import static android.os.Environment.getExternalStorageDirectory;
 
-public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MainActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
 
     private GoogleMap mMap;
@@ -93,22 +92,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             file.mkdirs();
         }
 
-       /* lv = (ListView) findViewById(R.id.listView);
-        sv = (SearchView) findViewById(R.id.searchView);
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, adress);
-        lv.setAdapter(adapter);
-        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String text) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String text) {
-                adapter.getFilter().filter(text);
-                return false;
-            }
-        });*/
 
         JSONObject obj=new JSONObject();
 
@@ -189,6 +172,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         // Centers the map on Toulouse
         LatLng toulouseWilson = new LatLng(43.6050, 1.447735);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(toulouseWilson, 15));
+        mMap.setOnInfoWindowClickListener(this);
 
     }
 
@@ -240,6 +224,15 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
     }
+
+    //TODO
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        Toast.makeText(this, "Info window clicked",
+                Toast.LENGTH_SHORT).show();
+    }
+
+    
 
     public void loadAllRoutes() {
         JSONArray jDepartArriveRoutes;

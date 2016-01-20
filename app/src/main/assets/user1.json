@@ -1,0 +1,9 @@
+/**
+ Export to JSON plugin for PHPMyAdmin
+ @version 0.1
+ */
+
+/* Database 'DCToulouse' */ 
+/* DCToulouse.Users */
+
+[{"id": 1,"name": "Marie DUPONT","addStreet": "27 Rue Jean Jaurès","addPostal": 31000,"addCity": "Toulouse","sexe": "F","telephone": 06062164978,"idVehicle": 2,"isDriver": "true"}]
