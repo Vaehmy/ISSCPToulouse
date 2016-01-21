@@ -17,12 +17,14 @@ public class AllDriversHandler {
     JSONObject json ;
     JSONArray jAAllDrivers;
     VehiclesHandler vehiclesHandler ;
+    RoutesHandler routesHandler ;
     Context context ;
 
     public AllDriversHandler(JSONObject json, Context context) {
         this.json = json;
         this.context = context ;
         this.vehiclesHandler = new VehiclesHandler(context);
+        this.routesHandler = new RoutesHandler(context);
     }
 
     public ArrayList allDriversfromJSON(JSONObject json) {
@@ -48,6 +50,10 @@ public class AllDriversHandler {
 
     public VehiclesHandler getVehiclesHandler() {
         return vehiclesHandler;
+    }
+
+    public RoutesHandler getRoutesHandler() {
+        return routesHandler;
     }
 
     public JSONArray getjAAllDrivers(){

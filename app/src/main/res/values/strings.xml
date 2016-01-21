@@ -17,12 +17,12 @@
 
 
     <!-- VALUES FOR INITIAL TESTS -->
-    <string name="profileName">Marie JEAN</string>
-    <string name="profileStreet">1 Rue FakeRue</string>
-    <string name="profilePostal">31200</string>
+    <string name="profileName">Anonyme</string>
+    <string name="profileStreet">Votre Rue</string>
+    <string name="profilePostal">31xxx</string>
     <string name="profileCity">Toulouse</string>
-    <string name="profileMail">mariejean@fakemail.com</string>
-    <string name="profileTel">06 00 00 00 00</string>
+    <string name="profileMail">votre@mail.com</string>
+    <string name="profileTel">06xxxxxxx</string>
     <string name="title_activity_maps">Map</string>
 
 

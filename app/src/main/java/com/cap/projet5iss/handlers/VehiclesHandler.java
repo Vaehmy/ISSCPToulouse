@@ -48,6 +48,19 @@ public class VehiclesHandler {
         return getJSON().getJSONArray("allVehicles");
     }
 
+    public JSONObject findVehicleFromVehicleId(String idVehicle) throws JSONException {
+        Boolean found = false ;
+        int j = 0;
+        for (int i = 0; i < jAallVehicles.length(); i++) {
+            if (jAallVehicles.getJSONObject(i).getString("idVehicle").equals(idVehicle)){
+                found = true ;
+                j = i ;
+                break;
+            }
+        }
+        return jAallVehicles.getJSONObject(j);
+    }
+
     public LatLng getLatLongFromObj(JSONObject jsonObject) throws JSONException {
         Double lat ;
         Double lng ;

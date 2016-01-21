@@ -1,9 +1,10 @@
-/**
- Export to JSON plugin for PHPMyAdmin
- @version 0.1
- */
-
-/* Database 'DCToulouse' */ 
-/* DCToulouse.Routes */
-
-[{"id": 1,"idUser": 1,"departHour": "10h","departLat": 43.5673,"departLong": 1.47541,"departPlace": "15 Avenue du Colonel Roche 31400 Toulous","arriveHour": "10h30","arriveLat": 43.6142,"arriveLong": 1.37689,"arrivePlace": "Airbus France - Usine Saint-Martin, Site","availableSeats": 3,"days": "Lundi, Mardi et Mercredi "}]
+{
+ "allRoutes": [
+  {"id": 1,"idUser": 1,"departHour": "10h","departLat": 43.5673,"departLong": 1.47541,"departPlace": "15 Avenue du Colonel Roche 31400 Toulous","arriveHour": "10h30","arriveLat": 43.6142,"arriveLong": 1.37689,"arrivePlace": "Airbus France - Usine Saint-Martin, Site","availableSeats": 3,"days": "Lundi, Mardi et Mercredi "},
+  {"id": 2,"idUser": 2,"departHour": "9h10","departLat": 43.6152,"departLong": 1.3504,"departPlace": "AirBus - Site Louis Bréguet","arriveHour": "9h45","arriveLat": 43.5841,"arriveLong": 1431280,"arrivePlace": "Stadum Municipal","availableSeats": 1,"days": "Tous les jours"},
+  {"id": 3,"idUser": 3,"departHour": "15h00","departLat": 43.6031,"departLong": 1.44475,"departPlace": "Centre Ville","arriveHour": "15h30","arriveLat": 43.5663,"arriveLong": 1.37864,"arrivePlace": "CapGemini Sud","availableSeats": 4,"days": "Mercredi uniquement"},
+  {"id": 4,"idUser": 4,"departHour": "17h30","departLat": 43.5647,"departLong": 1.38227,"departPlace": "Thales","arriveHour": "18h00","arriveLat": 43.5628,"arriveLong": 1.46033,"arrivePlace": "Faculté de Médecine Rangueil","availableSeats": 1,"days": "Trajet Quotidien"},
+  {"id": 5,"idUser": 5,"departHour": "8h15","departLat": 43.5793,"departLong": 1.45009,"departPlace": "Gare Saint-Agne","arriveHour": "8h45","arriveLat": 43.612,"arriveLong": 1.37842,"arrivePlace": "Sogeti High Tech","availableSeats": 4,"days": "Lundi à Vendredi"},
+  {"id": 6,"idUser": 6,"departHour": "10h","departLat": 43.6118,"departLong": 1.37013,"departPlace": "AirBus Usine Saint-Martin","arriveHour": "10h30","arriveLat": 43928300,"arriveLong": 1.48151,"arrivePlace": "Balma-Gramont","availableSeats": 1,"days": "Lundi à Jeudi"}
+ ]
+}

@@ -121,7 +121,9 @@
             android:layout_toRightOf="@+id/iV_logo"
             android:layout_toEndOf="@+id/iV_logo"
             android:layout_centerVertical="true"
-            android:paddingLeft="30dp" />
+            android:paddingLeft="30dp"
+            android:textSize="14dp"
+            android:textColor="#9a000000" />
 
     </RelativeLayout>
 

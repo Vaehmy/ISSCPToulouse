@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="250dp"
+    android:layout_height="fill_parent"
+    android:background="#e69aca61"
+    android:padding="10dp">
+
+        <ImageView
+
+            android:id="@+id/ivInfoWindowMain"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:layout_marginRight="5dp"
+
+            android:adjustViewBounds="true"
+
+            android:src="@drawable/profile"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="0dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp">
+
+        </ImageView>
+
+    <TextView
+
+        android:id="@+id/tiw_00"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_gravity="center_horizontal"
+
+        android:ellipsize="end"
+
+        android:singleLine="true"
+
+        android:textColor="#ffffff"
+
+        android:textSize="14dp"
+
+        android:textStyle="bold"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false"
+        android:layout_toRightOf="@+id/ivInfoWindowMain"
+        android:layout_alignBottom="@+id/ivInfoWindowMain"
+        android:paddingLeft="5dp" />
+
+    <TextView
+
+            android:id="@+id/tiw_01"
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:ellipsize="end"
+
+            android:singleLine="false"
+
+            android:textColor="#f0f0f0"
+
+            android:textSize="14dp"
+        android:layout_below="@+id/tiw_00"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:layout_alignRight="@+id/tiw_00" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView4"
+        android:layout_below="@+id/tiw_01">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/tiw_02"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentStart="false"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="5dp"
+                android:textSize="14dp"
+                android:layout_alignParentTop="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/tiw_03"
+                android:layout_below="@+id/tiw_02"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="5dp"
+                android:textSize="14dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/tiw_04"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/tiw_03"
+                android:textSize="14dp" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notifier"
+                android:id="@+id/biw_notifier"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentStart="false"
+                android:layout_below="@+id/tiw_04"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/notif"
+                android:background="#00ffffff"
+                android:layout_marginTop="5dp" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

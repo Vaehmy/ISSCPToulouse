@@ -8,8 +8,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
+import android.text.SpannableString;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -44,23 +46,29 @@ import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static android.os.Environment.getExternalStorageDirectory;
 
-public class MainActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
+public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
 
 
     private GoogleMap mMap;
+    private ImageButton bNotifier, bProfile ;
     private Switch switchUD;
     private ImageButton bRoutes;
     private JSONHandler jHAllDrivers;
+    private JSONHandler jHAllRoutes;
+    private JSONArray jHAllVehi;
     private ArrayList aLAllDrivers; // Array with all the Driver's JSONObjects
     private VehiclesHandler allVehiHandler;
     String jsonFileName;
     String dataToPost ;
     private TextView tv_welcome ;
     private String serverLocation = "http://10.32.1.8:8080/SmartCitiesProject/rest/UserService/";
-
+    private TextView iwname, iwtel, iwrouteactuelle, iwother, iwlast ;
+    private JSONObject driverObj;
+    private JSONArray jAallVehicules;
 
     protected void onStart() {
         super.onStart();
@@ -108,7 +116,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             e.printStackTrace();
         }
         dataToPost = obj.toString() ;
-        new HttpAsyncPOSTTask().execute(serverLocation+"/post/users");
+       // new HttpAsyncPOSTTask().execute(serverLocation+"/post/users");
 
     }
 
@@ -120,18 +128,23 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         // Views
         switchUD = (Switch) findViewById(R.id.switchUD);
         bRoutes = (ImageButton) findViewById(R.id.ib_route);
+        bProfile = (ImageButton) findViewById(R.id.ib_profile);
         tv_welcome = (TextView) findViewById(R.id.tV_welcomeName);
-
-
 
         // JSON Handlers
         jHAllDrivers = new JSONHandler(getApplicationContext(), "allDrivers.JSON");
+        jHAllRoutes = new JSONHandler(getApplicationContext(), "allRoutes.JSON");
+
+        JSONHandler jsonHandler = new JSONHandler(getApplicationContext(),"");
+        try {
+            tv_welcome.setText("Bonjour, " + jsonHandler.localUserToObject().getString("name")+".");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * Set all the listeners
-     * TODO
-     * - Add a listener for the Profile Button
      */
     public void setListeners() {
         switchUD.setOnClickListener(new View.OnClickListener() {
@@ -153,12 +166,20 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                 startNewActivity(Routes.class);
             }
         });
+
+        bProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startNewActivity(Profile.class);
+            }
+        });
     }
 
     public void startNewActivity(Class activityToStart){
         Intent intent = new Intent(this, activityToStart);
         startActivity(intent);
     }
+
     /**
      * Called once the Google Map is ready
      * Before the map is ready, "mMAp" is null and cannot be used
@@ -172,7 +193,103 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         // Centers the map on Toulouse
         LatLng toulouseWilson = new LatLng(43.6050, 1.447735);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(toulouseWilson, 15));
-        mMap.setOnInfoWindowClickListener(this);
+
+        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+
+
+            private final View contents = getLayoutInflater().inflate(R.layout.info_window, null);
+
+
+            @Override
+
+            public View getInfoWindow(Marker marker) {
+
+
+                try {
+                    String vehiID = marker.getSnippet();
+                    String userId = marker.getTitle();
+                    driverObj = jHAllDrivers.getAllDriversHandler().findDriverFromVehicleId(vehiID);
+
+
+                    JSONObject routeObject;
+                    JSONObject vehiObject;
+
+
+                    vehiObject = jHAllDrivers.getAllDriversHandler().getVehiclesHandler().findVehicleFromVehicleId(vehiID);
+                    routeObject = jHAllDrivers.getAllDriversHandler().getRoutesHandler().findRouteFromUserId(userId);
+
+                    bNotifier = (ImageButton) contents.findViewById(R.id.biw_notifier);
+                    bNotifier.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Log.i("Content window", "clicked on Notify");
+                            Toast toast = Toast.makeText(getApplicationContext(), "Notification Envoyée", Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
+                    });
+
+
+                    iwname = (TextView) contents.findViewById(R.id.tiw_00);
+                    iwtel = (TextView) contents.findViewById(R.id.tiw_01);
+                    iwrouteactuelle = (TextView) contents.findViewById(R.id.tiw_02);
+                    iwother = (TextView) contents.findViewById(R.id.tiw_03);
+                    iwlast = (TextView) contents.findViewById(R.id.tiw_04);
+
+                    if (driverObj.getString("name") != null) {
+                        iwname.setText(driverObj.getString("name"));
+                    } else {
+                        iwname.setText("Anonymous");
+                    }
+
+                    if (driverObj.getString("telephone") != null) {
+                        iwtel.setText(driverObj.getString("telephone"));
+                    } else {
+                        iwtel.setText("Cet utilisateur ne partage pas son numéro de téléphone.\nPour le contacter, veuillez utiliser la notification");
+                    }
+
+                    if (routeObject.getString("arrivePlace") != null) {
+                        iwrouteactuelle.setText("Vers : " + routeObject.getString("arrivePlace"));
+                    } else {
+                        iwrouteactuelle.setText("");
+                    }
+
+                    if (routeObject.getString("arriveHour") != null) {
+                        iwother.setText("Arrivée estimée à : " + routeObject.getString("arriveHour"));
+                    } else {
+                        iwother.setText("");
+                    }
+
+                    if (routeObject.getString("availableSeats") != null) {
+                        if (routeObject.getString("availableSeats") == "1") {
+                            iwlast.setText("Dernier siège disponible !");
+                        } else if (routeObject.getString("availableSeats") == "0") {
+                            iwlast.setText("Plus aucune place disponible à bord.");
+                        } else {
+                            iwlast.setText(routeObject.getString("availableSeats") + " sièges restants ");
+                        }
+                    } else {
+                        iwlast.setText("");
+                    }
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                return contents;
+
+            }
+
+
+            @Override
+
+            public View getInfoContents(Marker marker) {
+
+                return null;
+
+            }
+        });
+
 
     }
 
@@ -189,7 +306,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     public void loadPassengerMode() {
 
         bRoutes.setVisibility(View.GONE);
-        JSONArray jAallVehicules;
 
         try {
             // Parse JSON files
@@ -205,7 +321,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                 // Retrieving the location for a given vehicle
                 location = allVehiHandler.getLatLongFromObj(jAallVehicules.getJSONObject(i));
 
-                JSONObject driverObj;
+
                 driverObj = jHAllDrivers.getAllDriversHandler()
                         .findDriverFromVehicleId(String.valueOf(jAallVehicules
                                 .getJSONObject(i).getInt("idVehicle")));
@@ -215,8 +331,8 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                         .position(location)
                         .draggable(false)
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.car))
-                        .snippet("Tel : " + driverObj.getString("telephone"))
-                        .title(driverObj.getString("name")));
+                        .snippet(driverObj.getString("idVehicle"))
+                        .title(driverObj.getString("id")));
             }
 
         } catch (JSONException e) {
@@ -225,14 +341,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    //TODO
-    @Override
-    public void onInfoWindowClick(Marker marker) {
-        Toast.makeText(this, "Info window clicked",
-                Toast.LENGTH_SHORT).show();
-    }
-
-    
 
     public void loadAllRoutes() {
         JSONArray jDepartArriveRoutes;
