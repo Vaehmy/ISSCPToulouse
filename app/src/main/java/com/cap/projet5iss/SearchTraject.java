@@ -53,16 +53,17 @@ public class SearchTraject extends Activity {
         for (int i=0; i<jARoutes.length();i++){
             try {
                 routeObj = jARoutes.getJSONObject(i);
-                if((routeObj.getString("departPlace")== adresseDepart)
+                if((routeObj.getString("departPlace").equals(adresseDepart))
                       /* || (routeObj.getString("arrivePlace")== adresseDestination)
                        || (routeObj.getString("departHour")== hDepart)
                        || (routeObj.getString("arriveHour")== hDestination)*/)
                 {
-                    // routeObj.getString("idUser");
-                    Log.i("PARSING TEST", routeObj.getString("idUser"));
+                    Log.i("SEARCH ACTIVITY", "Comparing \""+routeObj.getString("departPlace")+ "\" with \""+adresseDepart+"\" ; MATCH FOUND" );
+                    Log.i("SEARCH ACTIVITY", "Found a match for user #"+routeObj.getString("idUser"));
                     //Log.i("TROUVE DANS LA BD", "C'est OK redirection");
                 } else{
-                    Log.i("NE TROUVE RIEN", "C'est OK sauf qu'il trouve rien dans le json");
+                    Log.i("SEARCH ACTIVITY", "Comparing \""+routeObj.getString("departPlace")+ "\" with \""+adresseDepart+"\" ; NO RESULT" );
+                    //Log.i("NE TROUVE RIEN", "C'est OK sauf qu'il trouve rien dans le json");
                 }
 
                 // toute comparaison et voir ce que ça affiche comme résultats
