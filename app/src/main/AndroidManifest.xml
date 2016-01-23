@@ -41,6 +41,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".SearchTraject"
+            android:label="@string/abc_search_hint">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
             <intent-filter>
