@@ -143,6 +143,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         JSONHandler jsonHandler = new JSONHandler(getApplicationContext(),"");
         try {
             tv_welcome.setText("Bonjour, " + jsonHandler.localUserToObject().getString("name")+".");
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

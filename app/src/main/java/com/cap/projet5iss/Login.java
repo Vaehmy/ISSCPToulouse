@@ -43,6 +43,7 @@ public class Login extends Activity {
 
         initialize();
 
+
         rbH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
