@@ -57,6 +57,10 @@ public class RoutesHandler {
         }
     }
 
+    public JSONArray getjAallRoutes() {
+        return jAallRoutes;
+    }
+
     public JSONObject findRouteFromUserId(String idUser) throws JSONException {
         Boolean found = false ;
         int j = 0;

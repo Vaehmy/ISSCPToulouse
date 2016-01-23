@@ -25,5 +25,10 @@
     <string name="profileTel">06xxxxxxx</string>
     <string name="title_activity_maps">Map</string>
 
+    <string name="edit1"> Entrez votre adresse de depart</string>
+    <string name="edit2"> Entrez votre adresse destination </string>
+    <string name="edit3"> Entrez votre heure de depart </string>
+    <string name="edit4"> Entrez votre heure d arrive  </string>
+
 
 </resources>

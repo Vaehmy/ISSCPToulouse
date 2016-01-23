@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cap.projet5iss.handlers.JSONHandler;
+import com.cap.projet5iss.handlers.RoutesHandler;
 import com.cap.projet5iss.handlers.VehiclesHandler;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -61,6 +62,8 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     private JSONHandler jHAllRoutes;
     private JSONArray jHAllVehi;
     private ArrayList aLAllDrivers; // Array with all the Driver's JSONObjects
+    private ArrayList allRoutes;
+    private RoutesHandler routesHandler;
     private VehiclesHandler allVehiHandler;
     String jsonFileName;
     String dataToPost ;
@@ -69,6 +72,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     private TextView iwname, iwtel, iwrouteactuelle, iwother, iwlast ;
     private JSONObject driverObj;
     private JSONArray jAallVehicules;
+    private Button bSearch;
 
     protected void onStart() {
         super.onStart();
@@ -130,6 +134,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         bRoutes = (ImageButton) findViewById(R.id.ib_route);
         bProfile = (ImageButton) findViewById(R.id.ib_profile);
         tv_welcome = (TextView) findViewById(R.id.tV_welcomeName);
+        bSearch = (Button) findViewById(R.id.bt_buttonSea);
 
         // JSON Handlers
         jHAllDrivers = new JSONHandler(getApplicationContext(), "allDrivers.JSON");
@@ -166,7 +171,14 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                 startNewActivity(Routes.class);
             }
         });
+        bSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent searchIntent = new Intent(MainActivity.this, SearchTraject.class);
+                startActivityForResult(searchIntent, 1);
 
+            }
+        });
         bProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -180,6 +192,15 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         startActivity(intent);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==1){ // If we come back from search activity
+            //TODO
+            Log.i("MAIN ACT RESULT", data.getStringExtra("IDUser"));
+        }
+    }
     /**
      * Called once the Google Map is ready
      * Before the map is ready, "mMAp" is null and cannot be used
