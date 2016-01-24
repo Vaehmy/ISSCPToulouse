@@ -17,7 +17,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/imageView2"
             android:src="@drawable/jumpinbiglogo"
-            android:layout_alignParentBottom="false"
             android:layout_alignParentLeft="false"
             android:layout_alignParentStart="false"
             android:foregroundGravity="center_horizontal"
